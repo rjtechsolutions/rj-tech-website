@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RJ Tech Solutions</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {margin:0;font-family:Arial;background:#f1f3f6;}
+
+/* NAVBAR */
+.navbar {
+display:flex;justify-content:space-between;align-items:center;
+padding:15px 50px;background:white;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+.logo {font-size:38px;font-weight:900;}
+.logo span {color:#007bff;}
+
+.nav-links a {
+margin-left:25px;text-decoration:none;color:#333;font-weight:bold;
+}
+
+/* HERO */
+.hero {
+height:100vh;
+background:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c') center/cover;
+display:flex;align-items:center;justify-content:center;
+color:white;text-align:center;position:relative;
+}
+.hero::after {
+content:"";position:absolute;width:100%;height:100%;
+background:rgba(0,0,0,0.5);
+}
+.hero-content {position:relative;z-index:2;}
+.hero h1 {font-size:60px;}
+.hero p {font-size:22px;}
+
+/* SLIDER */
+.slider {height:350px;position:relative;overflow:hidden;}
+.slide {
+position:absolute;width:100%;height:100%;
+opacity:0;transition:1s;
+}
+.slide img {width:100%;height:100%;object-fit:cover;}
+.active {opacity:1;}
+
+/* SERVICES */
+.title {text-align:center;margin:30px 0;font-size:26px;font-weight:bold;}
+.container {
+display:flex;flex-wrap:wrap;justify-content:center;
+gap:25px;padding:20px;
+}
+.card {
+background:white;width:320px;border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+overflow:hidden;
+}
+.card img {width:100%;height:200px;object-fit:cover;}
+.card h3 {margin:10px;}
+.card p {margin:10px;font-size:14px;}
+.card ul {margin:10px;font-size:14px;}
+
+/* CONTACT */
+.contact {text-align:center;padding:40px;background:#eef2f7;}
+.social a {
+margin:10px;font-size:22px;color:white;
+padding:12px;border-radius:50%;display:inline-block;
+}
+.whatsapp {background:#25D366;}
+.instagram {background:#E1306C;}
+.facebook {background:#1877F2;}
+
+/* FLOAT */
+.float {
+position:fixed;bottom:20px;right:20px;
+background:#25D366;color:white;
+padding:15px;border-radius:50%;
+}
+
+/* CHATBOT */
+.chatbot-btn {
+position:fixed;bottom:90px;right:20px;
+background:#007bff;color:white;
+padding:15px;border-radius:50%;
+cursor:pointer;z-index:9999;
+}
+
+.chatbox {
+position:fixed;bottom:150px;right:20px;
+width:300px;background:white;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+display:none;flex-direction:column;
+z-index:9999;
+}
+
+.chat-header {
+background:#007bff;color:white;
+padding:10px;display:flex;justify-content:space-between;
+}
+
+.chat-body {
+height:250px;overflow-y:auto;padding:10px;
+}
+
+.bot {background:#eee;padding:8px;margin:5px;border-radius:8px;}
+.user {background:#007bff;color:white;padding:8px;margin:5px;border-radius:8px;text-align:right;}
+
+.chat-input {display:flex;}
+.chat-input input {flex:1;padding:10px;border:none;}
+.chat-input button {background:#007bff;color:white;border:none;padding:10px;}
+
+footer {background:#0a2540;color:white;text-align:center;padding:20px;}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+<div class="logo">RJ <span>Tech Solutions</span></div>
+<div class="nav-links">
+<a href="#">Home</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-content">
+<h1>RJ Tech Solutions</h1>
+<p>Professional IT Services in Pune Pisoli</p>
+</div>
+</div>
+
+<!-- SLIDER -->
+<div class="slider">
+<div class="slide active"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31"></div>
+</div>
+
+<!-- SERVICES -->
+<div class="title">Our Services</div>
+
+<div class="container" id="services">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7">
+<h3>Computer Repair</h3>
+<p>Complete troubleshooting, upgrades and optimization.</p>
+<ul><li>✔ Fast Service</li><li>✔ Expert Technician</li></ul>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31">
+<h3>Network Setup</h3>
+<p>WiFi setup and router configuration.</p>
+<ul><li>✔ High Speed</li><li>✔ Secure Setup</li></ul>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1593642634443-44adaa06623a">
+<h3>CCTV Installation</h3>
+<p>Camera setup and monitoring.</p>
+<ul><li>✔ HD Camera</li><li>✔ Mobile View</li></ul>
+</div>
+
+</div>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+<h2>Contact</h2>
+<p>📞 8767698597</p>
+
+<div class="social">
+<a href="https://wa.me/918767698597" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+<a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+<a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
+</div>
+</div>
+
+<a href="https://wa.me/918767698597" class="float"><i class="fab fa-whatsapp"></i></a>
+
+<!-- 🤖 SMART BOT -->
+<div class="chatbot-btn" onclick="toggleChat()">💬</div>
+
+<div class="chatbox" id="chatbox">
+<div class="chat-header">RJ Support <span onclick="toggleChat()">✖</span></div>
+
+<div class="chat-body" id="chatBody">
+<div class="bot">Hello 👋 Ask anything about repair, CCTV or network.</div>
+</div>
+
+<div class="chat-input">
+<input type="text" id="msg" placeholder="Type..." onkeypress="enter(event)">
+<button onclick="send()">Send</button>
+</div>
+</div>
+
+<footer>© RJ Tech Solutions</footer>
+
+<script>
+// SLIDER
+let slides=document.querySelectorAll(".slide");
+let index=0;
+setInterval(()=>{
+slides[index].classList.remove("active");
+index=(index+1)%slides.length;
+slides[index].classList.add("active");
+},3000);
+
+// BOT
+function toggleChat(){
+let c=document.getElementById("chatbox");
+c.style.display=c.style.display==="flex"?"none":"flex";
+}
+
+function send(){
+let input=document.getElementById("msg");
+let text=input.value;
+if(text==="") return;
+
+let chat=document.getElementById("chatBody");
+chat.innerHTML+=`<div class="user">${text}</div>`;
+
+let reply = smartReply(text.toLowerCase());
+
+setTimeout(()=>{
+chat.innerHTML+=`<div class="bot">${reply}</div>`;
+chat.scrollTop=chat.scrollHeight;
+},500);
+
+input.value="";
+}
+
+function smartReply(text){
+
+if(text.includes("hi")||text.includes("hello"))
+return "👋 Hello! How can I help you today?";
+
+if(text.includes("laptop")||text.includes("slow"))
+return "💻 Your laptop may need cleaning, virus removal or RAM upgrade.";
+
+if(text.includes("repair"))
+return "🛠️ We provide complete repair service for computers & laptops.";
+
+if(text.includes("cctv"))
+return "📷 CCTV installation with mobile monitoring available.";
+
+if(text.includes("wifi")||text.includes("network"))
+return "🌐 We setup fast and secure WiFi networks.";
+
+if(text.includes("price"))
+return "💰 Please contact on WhatsApp for pricing details.";
+
+return "👍 Tell me more details, I will help you.";
+}
+
+function enter(e){if(e.key==="Enter")send();}
+</script>
+
+</body>
+</html>
