@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RJ Tech Solutions</title>
+
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{margin:0;font-family:Arial;background:#f4f6f9;}
+html{scroll-behavior:smooth}
+
+/* NAVBAR */
+.navbar{
+display:flex;justify-content:space-between;align-items:center;
+padding:10px 40px;background:#fff;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+.logo img{height:60px;}
+.nav-links a{margin-left:20px;text-decoration:none;color:black;font-weight:bold}
+
+/* ✅ HERO (FIXED OLD IMAGE) */
+.hero{
+height:90vh;
+background:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c') center/cover;
+display:flex;align-items:center;justify-content:center;
+color:white;text-align:center;position:relative;
+}
+.hero::after{
+content:"";position:absolute;width:100%;height:100%;
+background:rgba(0,0,0,0.5);
+}
+.hero-content{position:relative;z-index:2;}
+.hero h1{font-size:50px;margin:0;}
+.hero p{font-size:20px}
+
+/* SLIDER */
+.slider{margin:30px 0;}
+.slide{display:none;}
+.slide img{width:100%;height:300px;object-fit:cover;}
+.active{display:block}
+
+/* SERVICES */
+.title{text-align:center;font-size:28px;margin:20px 0;}
+.container{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+.card{
+width:280px;background:white;border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+overflow:hidden;text-align:center;
+}
+.card img{width:100%;height:180px;object-fit:cover;}
+.card p{padding:10px;font-size:14px}
+
+/* RATING */
+.rating{text-align:center;padding:40px;background:#fff;}
+.rating span{font-size:35px;cursor:pointer}
+
+/* FEEDBACK */
+.feedback{text-align:center;padding:40px;background:#eef2f7;}
+.feedback input,.feedback textarea{
+padding:10px;margin:8px;width:250px;border-radius:5px;border:1px solid #ccc;
+}
+.feedback button{
+padding:10px 20px;background:#007bff;color:white;border:none;border-radius:5px;
+}
+
+/* COMMENTS */
+#commentsList{
+display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;
+}
+.comment-box{
+width:260px;background:white;padding:10px;border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+.comment-box img{width:100%;margin-top:10px}
+
+/* CONTACT */
+.contact{text-align:center;padding:40px;background:#fff;}
+.social a{
+margin:10px;font-size:20px;color:white;
+padding:12px;border-radius:50%;
+display:inline-block;
+}
+.whatsapp{background:#25D366;}
+.instagram{background:#E1306C;}
+
+.float{
+position:fixed;bottom:20px;right:20px;
+background:#25D366;color:white;
+padding:15px;border-radius:50%;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+<div class="logo"><img src="logo.png"></div>
+<div class="nav-links">
+<a href="#">Home</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-content">
+<h1>RJ Tech Solutions</h1>
+<p>Professional IT Services in Pune Pisoli</p>
+</div>
+</div>
+
+<!-- SERVICES -->
+<div class="title">Our Services</div>
+<div class="container" id="services">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7">
+<h3>Computer Repair</h3>
+<p>Complete troubleshooting, virus removal, system cleanup and speed optimization.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31">
+<h3>Network Setup</h3>
+<p>WiFi setup, router configuration, LAN setup and internet troubleshooting.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1593642634443-44adaa06623a">
+<h3>CCTV Installation</h3>
+<p>Camera setup, DVR configuration, remote viewing and security monitoring.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+<h3>Data Recovery</h3>
+<p>Recover deleted files, hard disk recovery, pen drive & memory card data restore.</p>
+</div>
+
+</div>
+
+<!-- ⭐ RATING -->
+<div class="rating">
+<h2>Rate Our Service ⭐</h2>
+<span onclick="rate(1)">⭐</span>
+<span onclick="rate(2)">⭐</span>
+<span onclick="rate(3)">⭐</span>
+<span onclick="rate(4)">⭐</span>
+<span onclick="rate(5)">⭐</span>
+</div>
+
+<!-- 💬 FEEDBACK -->
+<div class="feedback">
+<h2>Customer Feedback</h2>
+<input id="name" placeholder="Your Name"><br>
+<textarea id="comment" placeholder="Service kashi vatali?"></textarea><br>
+<input type="file" id="photo"><br>
+<button onclick="addComment()">Submit</button>
+</div>
+
+<div id="commentsList"></div>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+<h2>Contact Us</h2>
+<p>📞 8767698597</p>
+<p>📧 jamdarraj867@gmail.com</p>
+
+<div class="social">
+<a href="https://wa.me/918767698597" target="_blank" class="whatsapp">
+<i class="fab fa-whatsapp"></i></a>
+
+<a href="https://instagram.com/rj_tech_00" target="_blank" class="instagram">
+<i class="fab fa-instagram"></i></a>
+</div>
+</div>
+
+<a href="https://wa.me/918767698597" class="float">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getFirestore, addDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-storage.js";
+
+const firebaseConfig = {
+apiKey:"AIzaSyA9PJ7fDsEyUcwx1DRAksv_LMaHyoj8y8s",
+authDomain:"rj-tech-90374.firebaseapp.com",
+projectId:"rj-tech-90374",
+storageBucket:"rj-tech-90374.firebasestorage.app",
+messagingSenderId:"433151794319",
+appId:"1:433151794319:web:e547fb400345105e98e4fa"
+};
+
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const storage=getStorage(app);
+
+window.addComment=async function(){
+let name=name.value;
+let commentText=comment.value;
+let file=photo.files[0];
+
+let img="";
+if(file){
+let r=ref(storage,"reviews/"+file.name);
+await uploadBytes(r,file);
+img=await getDownloadURL(r);
+}
+
+await addDoc(collection(db,"reviews"),{name,comment:commentText,image:img});
+loadComments();
+}
+
+async function loadComments(){
+let list=document.getElementById("commentsList");
+list.innerHTML="";
+let snap=await getDocs(collection(db,"reviews"));
+snap.forEach(doc=>{
+let d=doc.data();
+list.innerHTML+=`<div class="comment-box">
+<b>${d.name}</b><br>${d.comment}<br>
+${d.image?`<img src="${d.image}">`:""}
+</div>`;
+});
+}
+window.onload=loadComments;
+
+window.rate=async function(n){
+await addDoc(collection(db,"ratings"),{rating:n});
+}
+</script>
+
+</body>
+</html>
