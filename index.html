@@ -203,6 +203,32 @@ const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const storage=getStorage(app);
 
+  // 🔥 SUBMIT BUTTON EVENT
+document.getElementById("submitBtn").addEventListener("click", async () => {
+
+let name = document.getElementById("name").value;
+let comment = document.getElementById("comment").value;
+let file = document.getElementById("photo").files[0];
+
+let imageUrl = "";
+
+if(file){
+const storageRef = ref(storage, 'images/' + file.name);
+await uploadBytes(storageRef, file);
+imageUrl = await getDownloadURL(storageRef);
+}
+
+await addDoc(collection(db, "reviews"), {
+name: name,
+comment: comment,
+image: imageUrl,
+time: Date.now()
+});
+
+alert("Submitted Successfully 🔥");
+loadComments();
+
+});
 window.addComment=async function(){
 let name=name.value;
 let commentText=comment.value;
