@@ -5,165 +5,210 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RJ Tech Solutions</title>
 
-<link rel="icon" href="logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body{margin:0;font-family:Arial;background:#f4f6f9;}
-html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial;background:#f4f6f9;scroll-behavior:smooth;}
 
 /* NAVBAR */
 .navbar{
 display:flex;justify-content:space-between;align-items:center;
-padding:10px 40px;background:#fff;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
+padding:10px 20px;background:white;position:sticky;top:0;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);flex-wrap:wrap;
 }
-.logo img{height:60px;}
-.nav-links a{margin-left:20px;text-decoration:none;color:black;font-weight:bold}
+.logo img{height:40px;}
+.nav-links a{margin-left:15px;text-decoration:none;color:black;font-weight:bold;}
 
-/* ✅ HERO (FIXED OLD IMAGE) */
+/* HERO */
 .hero{
-height:90vh;
-background:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c') center/cover;
+height:100vh;
+background:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1500') center/cover no-repeat;
 display:flex;align-items:center;justify-content:center;
 color:white;text-align:center;position:relative;
 }
-.hero::after{
-content:"";position:absolute;width:100%;height:100%;
-background:rgba(0,0,0,0.5);
-}
+.hero::after{content:"";position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.6);}
 .hero-content{position:relative;z-index:2;}
-.hero h1{font-size:50px;margin:0;}
-.hero p{font-size:20px}
+.hero h1{font-size:50px;}
+.hero p{font-size:18px;}
 
 /* SLIDER */
-.slider{margin:30px 0;}
-.slide{display:none;}
-.slide img{width:100%;height:300px;object-fit:cover;}
-.active{display:block}
+.slider{height:250px;position:relative;overflow:hidden;}
+.slide{position:absolute;width:100%;height:100%;opacity:0;transition:1s;}
+.slide img{width:100%;height:100%;object-fit:cover;}
+.slide.active{opacity:1;}
 
 /* SERVICES */
-.title{text-align:center;font-size:28px;margin:20px 0;}
-.container{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
-.card{
-width:280px;background:white;border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-overflow:hidden;text-align:center;
-}
-.card img{width:100%;height:180px;object-fit:cover;}
-.card p{padding:10px;font-size:14px}
-
-/* RATING */
-.rating{text-align:center;padding:40px;background:#fff;}
-.rating span{font-size:35px;cursor:pointer}
+.title{text-align:center;font-size:24px;margin-top:20px;}
+.container{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;padding:15px;}
+.card{width:260px;background:white;border-radius:12px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);transition:0.3s;}
+.card:hover{transform:translateY(-8px);}
+.card img{width:100%;height:150px;object-fit:cover;}
+.card h3{text-align:center;margin:10px 0;}
+.card p{text-align:center;font-size:13px;padding:0 10px 12px;color:#444;}
 
 /* FEEDBACK */
-.feedback{text-align:center;padding:40px;background:#eef2f7;}
+.feedback{text-align:center;padding:20px;}
 .feedback input,.feedback textarea{
-padding:10px;margin:8px;width:250px;border-radius:5px;border:1px solid #ccc;
+padding:10px;margin:5px;width:250px;border:1px solid #ccc;border-radius:6px;
 }
-.feedback button{
-padding:10px 20px;background:#007bff;color:white;border:none;border-radius:5px;
+button{
+padding:10px 20px;background:#007bff;color:white;border:none;border-radius:6px;cursor:pointer;
 }
 
-/* COMMENTS */
+/* REVIEWS */
+.comments-section{padding:20px;background:white;}
 #commentsList{
-display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:15px;
 }
 .comment-box{
-width:260px;background:white;padding:10px;border-radius:10px;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
+background:white;padding:15px;border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
-.comment-box img{width:100%;margin-top:10px}
+.comment-images{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(70px,1fr));
+gap:5px;margin-top:8px;
+}
+.comment-images img{
+width:100%;height:70px;object-fit:cover;border-radius:6px;cursor:pointer;
+}
 
 /* CONTACT */
-.contact{text-align:center;padding:40px;background:#fff;}
+.contact{text-align:center;padding:25px;}
 .social a{
-margin:10px;font-size:20px;color:white;
-padding:12px;border-radius:50%;
-display:inline-block;
+display:inline-flex;align-items:center;justify-content:center;
+margin:8px;width:45px;height:45px;border-radius:50%;
 }
+.social i{font-size:20px;color:white;}
 .whatsapp{background:#25D366;}
 .instagram{background:#E1306C;}
 
-.float{
-position:fixed;bottom:20px;right:20px;
-background:#25D366;color:white;
-padding:15px;border-radius:50%;
+/* ADMIN */
+.admin-btn{
+position:fixed;bottom:20px;left:20px;
+background:black;color:white;padding:10px;border-radius:8px;cursor:pointer;
+}
+
+/* LOGIN */
+.modal{
+display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.6);align-items:center;justify-content:center;
+}
+.modal-box{
+background:white;padding:20px;border-radius:10px;text-align:center;
+}
+
+/* LOADER */
+.loader{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:white;display:flex;align-items:center;justify-content:center;
+z-index:9999;
+}
+.loader div{
+width:40px;height:40px;border:5px solid #ccc;
+border-top:5px solid #007bff;border-radius:50%;
+animation:spin 1s linear infinite;
+}
+@keyframes spin{100%{transform:rotate(360deg);}}
+
+/* FULLSCREEN IMAGE */
+.fullscreen{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.9);display:none;
+align-items:center;justify-content:center;
+}
+.fullscreen img{
+max-width:90%;max-height:90%;border-radius:10px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+.hero h1{font-size:32px;}
+.hero p{font-size:14px;}
+.nav-links{width:100%;text-align:center;margin-top:10px;}
+.nav-links a{display:inline-block;margin:8px;}
 }
 </style>
 </head>
 
 <body>
 
+<div class="loader" id="loader"><div></div></div>
+
+<div class="fullscreen" id="fullscreen" onclick="this.style.display='none'">
+<img id="fullImg">
+</div>
+
 <!-- NAVBAR -->
 <div class="navbar">
 <div class="logo"><img src="logo.png"></div>
 <div class="nav-links">
-<a href="#">Home</a>
+<a href="#home">Home</a>
 <a href="#services">Services</a>
 <a href="#contact">Contact</a>
 </div>
 </div>
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero" id="home">
 <div class="hero-content">
 <h1>RJ Tech Solutions</h1>
 <p>Professional IT Services in Pune Pisoli</p>
 </div>
 </div>
 
-<!-- SERVICES -->
-<div class="title">Our Services</div>
-<div class="container" id="services">
+<!-- SLIDER -->
+<div class="slider">
+<div class="slide active"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format"></div>
+</div>
 
+<!-- SERVICES -->
+<h2 class="title" id="services">Our Services</h2>
+<div class="container">
+<!-- same cards -->
 <div class="card">
-<img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7">
+<img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format">
 <h3>Computer Repair</h3>
-<p>Complete troubleshooting, virus removal, system cleanup and speed optimization.</p>
+<p>Complete troubleshooting, virus removal, system cleanup and performance optimization.</p>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31">
+<img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format">
 <h3>Network Setup</h3>
 <p>WiFi setup, router configuration, LAN setup and internet troubleshooting.</p>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1593642634443-44adaa06623a">
+<img src="https://images.unsplash.com/photo-1593642634443-44adaa06623a?auto=format">
 <h3>CCTV Installation</h3>
-<p>Camera setup, DVR configuration, remote viewing and security monitoring.</p>
+<p>Camera setup, DVR configuration, remote viewing and monitoring.</p>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+<img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format">
 <h3>Data Recovery</h3>
-<p>Recover deleted files, hard disk recovery, pen drive & memory card data restore.</p>
+<p>Recover deleted files from hard disk, pen drive and memory cards.</p>
+</div>
 </div>
 
-</div>
-
-<!-- ⭐ RATING -->
-<div class="rating">
-<h2>Rate Our Service ⭐</h2>
-<span onclick="rate(1)">⭐</span>
-<span onclick="rate(2)">⭐</span>
-<span onclick="rate(3)">⭐</span>
-<span onclick="rate(4)">⭐</span>
-<span onclick="rate(5)">⭐</span>
-</div>
-
-<!-- 💬 FEEDBACK -->
+<!-- FEEDBACK -->
 <div class="feedback">
-<h2>Customer Feedback</h2>
-<input id="name" placeholder="Your Name"><br>
-<textarea id="comment" placeholder="Service kashi vatali?"></textarea><br>
-<input type="file" id="photo"><br>
+<input id="nameInput" placeholder="Your Name"><br>
+<textarea id="commentInput" placeholder="Your Feedback"></textarea><br>
+<input type="file" id="photo" multiple><br><br>
 <button id="submitBtn">Submit</button>
 </div>
 
+<!-- REVIEWS -->
+<div class="comments-section">
+<h2 style="text-align:center;">Customer Reviews</h2>
 <div id="commentsList"></div>
+</div>
 
 <!-- CONTACT -->
 <div class="contact" id="contact">
@@ -173,95 +218,122 @@ padding:15px;border-radius:50%;
 
 <div class="social">
 <a href="https://wa.me/918767698597" target="_blank" class="whatsapp">
-<i class="fab fa-whatsapp"></i></a>
-
-<a href="https://instagram.com/rj_tech_00" target="_blank" class="instagram">
-<i class="fab fa-instagram"></i></a>
-</div>
-</div>
-
-<a href="https://wa.me/918767698597" class="float">
 <i class="fab fa-whatsapp"></i>
 </a>
+<a href="https://instagram.com/rj_tech_00" target="_blank" class="instagram">
+<i class="fab fa-instagram"></i>
+</a>
+</div>
+</div>
 
-<!-- FIREBASE -->
+<div class="admin-btn" onclick="openLogin()">Admin</div>
+
+<div class="modal" id="loginModal">
+<div class="modal-box">
+<h3>Admin Login</h3>
+<input id="email"><br><br>
+<input id="pass" type="password"><br><br>
+<button onclick="login()">Login</button>
+</div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getFirestore, addDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+import { getFirestore, addDoc, collection, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-storage.js";
 
-const firebaseConfig = {
-apiKey:"AIzaSyA9PJ7fDsEyUcwx1DRAksv_LMaHyoj8y8s",
-authDomain:"rj-tech-90374.firebaseapp.com",
-projectId:"rj-tech-90374",
-storageBucket:"rj-tech-90374.firebasestorage.app",
-messagingSenderId:"433151794319",
-appId:"1:433151794319:web:e547fb400345105e98e4fa"
-};
-
-const app=initializeApp(firebaseConfig);
+const app=initializeApp({apiKey:"AIzaSy...",projectId:"rj-tech-90374"});
 const db=getFirestore(app);
 const storage=getStorage(app);
 
-  // 🔥 SUBMIT BUTTON EVENT
-document.getElementById("submitBtn").addEventListener("click", async () => {
+let isAdmin=false;
 
-let name = document.getElementById("name").value;
-let comment = document.getElementById("comment").value;
-let file = document.getElementById("photo").files[0];
+function showLoader(){loader.style.display="flex";}
+function hideLoader(){loader.style.display="none";}
 
-let imageUrl = "";
+/* SLIDER */
+let slides=document.querySelectorAll(".slide");
+let i=0;
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},3000);
 
-if(file){
-const storageRef = ref(storage, 'images/' + file.name);
-await uploadBytes(storageRef, file);
-imageUrl = await getDownloadURL(storageRef);
+/* SUBMIT */
+submitBtn.onclick=async()=>{
+showLoader();
+let imgs=[];
+for(let f of photo.files){
+let r=ref(storage,"img/"+Date.now()+f.name);
+await uploadBytes(r,f);
+imgs.push(await getDownloadURL(r));
 }
-
-await addDoc(collection(db, "reviews"), {
-name: name,
-comment: comment,
-image: imageUrl,
-time: Date.now()
+await addDoc(collection(db,"reviews"),{
+name:nameInput.value,
+comment:commentInput.value,
+images:imgs
 });
+loadReviews();
+hideLoader();
+};
 
-alert("Submitted Successfully 🔥");
-loadComments();
+/* FULLSCREEN */
+window.openImg=(src)=>{
+fullImg.src=src;
+fullscreen.style.display="flex";
+};
 
-});
-window.addComment=async function(){
-let name=name.value;
-let commentText=comment.value;
-let file=photo.files[0];
+/* DELETE IMAGE */
+window.delImg=async(id,index,images)=>{
+images.splice(index,1);
+await updateDoc(doc(db,"reviews",id),{images:images});
+loadReviews();
+};
 
-let img="";
-if(file){
-let r=ref(storage,"reviews/"+file.name);
-await uploadBytes(r,file);
-img=await getDownloadURL(r);
-}
-
-await addDoc(collection(db,"reviews"),{name,comment:commentText,image:img});
-loadComments();
-}
-
-async function loadComments(){
+/* LOAD */
+async function loadReviews(){
+showLoader();
 let list=document.getElementById("commentsList");
 list.innerHTML="";
 let snap=await getDocs(collection(db,"reviews"));
-snap.forEach(doc=>{
-let d=doc.data();
-list.innerHTML+=`<div class="comment-box">
-<b>${d.name}</b><br>${d.comment}<br>
-${d.image?`<img src="${d.image}">`:""}
+
+snap.forEach(d=>{
+let data=d.data();
+let imgHTML="";
+data.images?.forEach((img,i)=>{
+imgHTML+=`
+<div style="position:relative;">
+<img src="${img}" onclick="openImg('${img}')">
+${isAdmin?`<button onclick="delImg('${d.id}',${i},${JSON.stringify(data.images)})" style="position:absolute;top:3px;right:3px;">X</button>`:""}
 </div>`;
 });
-}
-window.onload=loadComments;
 
-window.rate=async function(n){
-await addDoc(collection(db,"ratings"),{rating:n});
+list.innerHTML+=`
+<div class="comment-box">
+<b>${data.name}</b>
+<p>${data.comment}</p>
+<div class="comment-images">${imgHTML}</div>
+${isAdmin?`<button onclick="del('${d.id}')">Delete</button>`:""}
+</div>`;
+});
+hideLoader();
 }
+loadReviews();
+
+/* ADMIN */
+window.openLogin=()=>loginModal.style.display="flex";
+window.login=()=>{
+if(email.value==="admin@gmail.com" && pass.value==="1234"){
+isAdmin=true;
+loginModal.style.display="none";
+loadReviews();
+}else alert("Wrong");
+};
+window.del=async(id)=>{
+await deleteDoc(doc(db,"reviews",id));
+loadReviews();
+};
 </script>
 
 </body>
