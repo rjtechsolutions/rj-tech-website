@@ -30,49 +30,20 @@ z-index:10000;
 .logo{
 position:absolute;
 left:20px;
-background:white;
-padding:5px 10px;
-border-radius:8px;
-transition:0.3s;
 }
 .logo img{
 height:45px;
-display:block;
-}
-.logo:hover{
-transform:scale(1.08);
 }
 
 /* NAVBAR */
 .navbar{
 display:flex;
-justify-content:center;
 gap:30px;
 }
 .navbar a{
 text-decoration:none;
 color:black;
 font-weight:bold;
-position:relative;
-transition:0.3s;
-}
-
-/* NAV HOVER */
-.navbar a::after{
-content:"";
-position:absolute;
-width:0%;
-height:2px;
-background:#0a58ca;
-left:0;
-bottom:-5px;
-transition:0.3s;
-}
-.navbar a:hover{
-color:#0a58ca;
-}
-.navbar a:hover::after{
-width:100%;
 }
 
 /* HERO */
@@ -82,24 +53,13 @@ background:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c') c
 color:white;
 text-align:center;
 padding:120px;
-animation:fadeIn 1.5s ease;
 }
 
-.hero h1{
-font-size:40px;
-transition:0.3s;
-}
-.hero h1:hover{
-transform:scale(1.05);
-}
-
-/* SECTION */
 .section{
 padding:40px;
 text-align:center;
 }
 
-/* CARD */
 .card{
 border:1px solid #ccc;
 padding:20px;
@@ -107,40 +67,12 @@ margin:15px;
 display:inline-block;
 width:250px;
 border-radius:10px;
-transition:0.3s;
-background:white;
-
-/* scroll animation */
-opacity:0;
-transform:translateY(50px);
 }
 
 .card img{
 width:100%;
 height:150px;
 object-fit:cover;
-}
-
-/* CARD HOVER */
-.card:hover{
-transform:translateY(-10px) scale(1.03);
-box-shadow:0 8px 20px rgba(0,0,0,0.2);
-}
-.card:hover h3{
-color:#0a58ca;
-}
-
-/* SHOW */
-.show{
-opacity:1;
-transform:translateY(0);
-transition:1s;
-}
-
-/* KEYFRAME */
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
 }
 </style>
 </head>
@@ -150,18 +82,16 @@ to{opacity:1;}
 <!-- HEADER -->
 <div class="header">
 
-    <!-- LOGO -->
-    <div class="logo">
-        <img src="logo.png" onerror="this.src='https://via.placeholder.com/120x60?text=RJ+Logo'">
-    </div>
+<div class="logo">
+<img src="logo.png">
+</div>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
-        <a href="index.html">Home</a>
-        <a href="services.html" target="_blank">Services</a>
-        <a href="about.html" target="_blank">About</a>
-        <a href="contact.html" target="_blank">Contact</a>
-    </div>
+<div class="navbar">
+<a href="index.html">Home</a>
+<a href="services.html">Services</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
 
 </div>
 
@@ -178,37 +108,19 @@ to{opacity:1;}
 <div class="card">
 <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7">
 <h3>Computer Repair</h3>
-<p>Fix all software & hardware issues.</p>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31">
 <h3>Networking</h3>
-<p>LAN, WiFi, Router setup.</p>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1593642634443-44adaa06623a">
 <h3>CCTV</h3>
-<p>Security camera installation.</p>
 </div>
 
 </div>
-
-<!-- SCROLL SCRIPT -->
-<script>
-const cards = document.querySelectorAll('.card');
-
-window.addEventListener('scroll', () => {
-    let trigger = window.innerHeight * 0.85;
-
-    cards.forEach(card => {
-        if(card.getBoundingClientRect().top < trigger){
-            card.classList.add('show');
-        }
-    });
-});
-</script>
 
 </body>
 </html>
