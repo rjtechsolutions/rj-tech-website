@@ -75,6 +75,7 @@ input,textarea{
     border-radius:8px;
 }
 
+/* 🔥 BUTTON DOWN */
 button{
     background:#0a58ca;
     color:white;
@@ -83,6 +84,7 @@ button{
     width:100%;
     border-radius:8px;
     cursor:pointer;
+    margin-top:25px; /* 🔥 spacing increased */
 }
 
 /* GOOGLE BUTTON */
@@ -134,10 +136,10 @@ button{
     width:100px;
     height:100px;
     object-fit:cover;
-    cursor:pointer; /* 🔥 clickable */
+    cursor:pointer;
 }
 
-/* 🔥 MODAL */
+/* MODAL */
 #imgModal{
     display:none;
     position:fixed;
@@ -230,8 +232,11 @@ footer{
 <button type="submit">Send Message</button>
 </form>
 
+<!-- GOOGLE FIX -->
 <h2>Google Reviews</h2>
-<a class="google-btn" href="#" target="_blank">⭐ Write a Review on Google</a>
+<a class="google-btn" href="#" onclick="alert('Google reviews will be available soon.'); return false;">
+⭐ Google Reviews (Coming Soon)
+</a>
 
 <h2>Customer Reviews</h2>
 
@@ -249,7 +254,7 @@ footer{
 
 </div>
 
-<!-- 🔥 MODAL -->
+<!-- MODAL -->
 <div id="imgModal">
 <span onclick="closeModal()">&times;</span>
 <img id="modalImg">
