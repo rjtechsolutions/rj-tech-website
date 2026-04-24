@@ -10,7 +10,6 @@ body{
     background:#f5f5f5;
 }
 
-/* NAVBAR */
 .navbar{
     width:100%;
     background:white;
@@ -28,7 +27,6 @@ body{
     font-weight:bold;
 }
 
-/* CONTAINER */
 .container{
     width:90%;
     max-width:900px;
@@ -49,7 +47,6 @@ img{
     margin:20px 0;
 }
 
-/* CARDS */
 .cards{
     display:flex;
     flex-wrap:wrap;
@@ -65,7 +62,6 @@ img{
     text-align:center;
 }
 
-/* FORM */
 input,textarea{
     display:block;
     margin:10px 0;
@@ -75,7 +71,6 @@ input,textarea{
     border-radius:8px;
 }
 
-/* 🔥 BUTTON DOWN */
 button{
     background:#0a58ca;
     color:white;
@@ -84,10 +79,9 @@ button{
     width:100%;
     border-radius:8px;
     cursor:pointer;
-    margin-top:25px; /* 🔥 spacing increased */
+    margin-top:25px;
 }
 
-/* GOOGLE BUTTON */
 .google-btn{
     display:block;
     text-align:center;
@@ -100,7 +94,6 @@ button{
     font-weight:bold;
 }
 
-/* FILE BUTTON */
 .file-label{
     display:block;
     background:#0a58ca;
@@ -116,7 +109,6 @@ button{
     display:none;
 }
 
-/* REVIEWS */
 .review-box{
     background:#fff;
     padding:15px;
@@ -139,7 +131,6 @@ button{
     cursor:pointer;
 }
 
-/* MODAL */
 #imgModal{
     display:none;
     position:fixed;
@@ -167,7 +158,6 @@ button{
     cursor:pointer;
 }
 
-/* FOOTER */
 footer{
     text-align:center;
     padding:20px;
@@ -232,9 +222,8 @@ footer{
 <button type="submit">Send Message</button>
 </form>
 
-<!-- GOOGLE FIX -->
 <h2>Google Reviews</h2>
-<a class="google-btn" href="#" onclick="alert('Google reviews will be available soon.'); return false;">
+<a class="google-btn" href="#" style="opacity:0.7; cursor:not-allowed;">
 ⭐ Google Reviews (Coming Soon)
 </a>
 
@@ -254,7 +243,6 @@ footer{
 
 </div>
 
-<!-- MODAL -->
 <div id="imgModal">
 <span onclick="closeModal()">&times;</span>
 <img id="modalImg">
@@ -265,69 +253,77 @@ footer{
 </footer>
 
 <script>
-let reviewsData = JSON.parse(localStorage.getItem("reviews")) || [];
-
-function displayReviews(){
-document.getElementById("reviews").innerHTML = "";
-
-reviewsData.forEach(r=>{
-let imgs = r.images.map(img=>`<img src="${img}" onclick="openModal(this.src)">`).join("");
-
-let html = `
-<div class="review-box">
-<b>${r.name}</b>
-<p>${r.msg}</p>
-<div class="review-images">${imgs}</div>
-</div>
-`;
-
-document.getElementById("reviews").innerHTML += html;
-});
-}
-
-displayReviews();
-
 function openModal(src){
 document.getElementById("imgModal").style.display="flex";
 document.getElementById("modalImg").src = src;
 }
-
 function closeModal(){
 document.getElementById("imgModal").style.display="none";
 }
+</script>
 
-document.getElementById("reviewForm").addEventListener("submit", function(e){
+<!-- 🔥 FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, addDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9PJ7fDsEyUcwxlDRAksv_LMaHyoj8y8s",
+  authDomain: "rj-tech-90374.firebaseapp.com",
+  projectId: "rj-tech-90374",
+  storageBucket: "rj-tech-90374.firebasestorage.app",
+  messagingSenderId: "433151794319",
+  appId: "1:433151794319:web:e547fb400345105e98e4fa"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+async function loadReviews(){
+const snapshot = await getDocs(collection(db, "reviews"));
+document.getElementById("reviews").innerHTML = "";
+
+snapshot.forEach(doc => {
+const r = doc.data();
+let imgs = r.images.map(img => `<img src="${img}" onclick="openModal('${img}')">`).join("");
+
+document.getElementById("reviews").innerHTML += `
+<div class="review-box">
+<b>${r.name}</b>
+<p>${r.msg}</p>
+<div class="review-images">${imgs}</div>
+</div>`;
+});
+}
+
+loadReviews();
+
+document.getElementById("reviewForm").addEventListener("submit", async function(e){
 e.preventDefault();
 
 let name = document.getElementById("rname").value;
 let msg = document.getElementById("rmsg").value;
 let files = document.getElementById("rphoto").files;
 
-let images = [];
-let count = 0;
+let urls = [];
 
-if(files.length === 0){
-saveReview();
-}else{
 for(let i=0;i<files.length;i++){
-let reader = new FileReader();
-reader.onload = function(e){
-images.push(e.target.result);
-count++;
-if(count === files.length){
-saveReview();
-}
-};
-reader.readAsDataURL(files[i]);
-}
+let fileRef = ref(storage, "reviews/" + Date.now() + files[i].name);
+await uploadBytes(fileRef, files[i]);
+let url = await getDownloadURL(fileRef);
+urls.push(url);
 }
 
-function saveReview(){
-reviewsData.push({name,msg,images});
-localStorage.setItem("reviews", JSON.stringify(reviewsData));
-displayReviews();
-document.getElementById("reviewForm").reset();
-}
+await addDoc(collection(db, "reviews"), {
+name,
+msg,
+images: urls
+});
+
+loadReviews();
+this.reset();
 });
 </script>
 
