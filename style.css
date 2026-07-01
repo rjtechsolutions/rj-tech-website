@@ -810,3 +810,86 @@ display:none;
 }
 
 }
+#typing{
+
+color:#d4af37;
+
+border-right:3px solid #d4af37;
+
+padding-right:5px;
+
+animation:blink .7s infinite;
+
+}
+
+@keyframes blink{
+
+50%{
+
+border-color:transparent;
+
+}
+
+}
+.whatsapp{
+
+position:fixed;
+
+bottom:25px;
+
+left:25px;
+
+width:65px;
+
+height:65px;
+
+background:#25D366;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:34px;
+
+color:white;
+
+box-shadow:0 0 25px rgba(37,211,102,.5);
+
+z-index:9999;
+
+transition:.3s;
+
+}
+
+.whatsapp:hover{
+
+transform:scale(1.15);
+
+}
+/* ===== Scroll Progress ===== */
+
+#progressBar{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:0%;
+
+height:5px;
+
+background:linear-gradient(90deg,#d4af37,#ffd700,#ffae00);
+
+z-index:99999;
+
+transition:.1s;
+
+box-shadow:0 0 15px #d4af37;
+
+}
